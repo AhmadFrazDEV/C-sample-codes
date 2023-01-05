@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace fileHandling
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            string path = "G:\\C#\\newFile.txt";
+            if (File.Exists(path))
+            {
+                StreamWriter file = new StreamWriter(path);
+                string str = Console.ReadLine();
+                file.WriteLine(str);
+                file.Flush();
+                file.Close();
+                Console.Read();
+            }
+            else
+            {
+                Console.WriteLine("Not Open...");   
+            }
+        }
+    }
+}

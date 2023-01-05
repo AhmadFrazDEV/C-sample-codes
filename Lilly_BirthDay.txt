@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace fileHandling
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int Brother_take = 0;
+            int toy_price;
+            int toy_sum = 0;
+            int USD = 0;
+            int USD_1 = 0;
+            Console.WriteLine("Lilly AGe:");
+            int age = int.Parse(Console.ReadLine());
+
+            for(int i=0; i<age; i++)
+            {
+                if(i % 2 == 1)
+                {
+                    Console.WriteLine("Price of Toy...");
+                    toy_price = int.Parse(Console.ReadLine());
+                    toy_sum += toy_price;
+                }
+                else
+                {
+                    USD = USD + (USD_1 = USD_1 + 10);
+                    Brother_take++;
+                }
+            }
+
+            Console.WriteLine("Toy price... {0} ..... USD....{1}", toy_sum, USD);
+            Console.WriteLine("Price of WashingMechine");
+            double P_washingMach = double.Parse(Console.ReadLine());
+            double Total_saving = find_sum(toy_sum , USD , Brother_take);
+            Console.WriteLine("Lilly has {0} dollars" , Total_saving);
+
+            if (P_washingMach < Total_saving)
+            {
+                Console.WriteLine("Lilly can Buy Mechine");
+                double remaning = Total_saving - P_washingMach;
+                Console.WriteLine("She has Remaing {0} dollars" , remaning);
+            }
+            else
+            {
+                Console.WriteLine("Lilly cann't Buy Mechine");
+            }
+            Console.Read();
+        }
+
+        static int find_sum(int t , int U , int b)
+        {
+            int c = t + (U - b);
+            return c;
+        }
+    }
+}

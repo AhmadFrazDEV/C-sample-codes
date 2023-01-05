@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace fileHandling
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            string path = "G:\\ahmad\\signup.txt";
+            StreamReader file = new StreamReader(path);
+            string rec = "";
+            while((rec = file.ReadLine()) !=null)
+             {
+                Console.WriteLine(rec);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}

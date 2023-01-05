@@ -1,0 +1,139 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace fileHandling
+{
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            string path = "G:\\ahmad\\cSharp.txt";
+            
+            menu();
+            int opt = int.Parse(Console.ReadLine());
+            Console.Clear();
+           while(opt != 3)
+            {
+                
+                if (opt == 1)
+                {
+                    string name, password;
+                    Console.WriteLine("ENter the Name...");
+                    name = Console.ReadLine();
+                    Console.WriteLine("ENter the password...");
+                    password = Console.ReadLine();
+                    SignUp(path, name, password);
+                    Console.Clear();
+                }
+                if (opt == 2)
+                {
+                    string name, password;
+                    Console.WriteLine("ENter the Name...");
+                    name = Console.ReadLine();
+                    Console.WriteLine("ENter the password...");
+                    password = Console.ReadLine();
+                    SignIn(path, name, password);
+                    Console.Clear();
+
+                }
+
+                menu();
+                opt = int.Parse(Console.ReadLine());
+                Console.Clear();
+            }
+          
+
+            Console.Read();
+        }
+
+        static void menu()
+        {
+            Console.WriteLine("SignIn...");
+            Console.WriteLine("SignUp...");
+            Console.WriteLine("Exist...");
+        }
+
+        static void SignUp(string path , string name , string password)
+        {
+            if(File.Exists(path))
+            {
+                StreamWriter file = new StreamWriter(path,true);
+                file.WriteLine(name + "," + password);
+                file.Flush();
+                file.Close();
+            }
+            else
+            {
+                Console.WriteLine("Cant be open");
+            }
+        }
+
+        static void SignIn(string path , string name , string password)
+        {
+            string[] n = new string [100];
+            string[] p = new string [100];
+            string rec;
+            int x = 0;
+            if(File.Exists(path))
+            {
+                StreamReader file = new StreamReader(path);
+                while((rec = file.ReadLine()) != null)
+                {
+                    n[x] = passRecord(rec, 1);
+                    p[x] = passRecord(rec, 2);
+                    x++;
+                }
+
+               
+                bool flag = false;
+
+                for(int i=0; i<x; i++)
+                {
+                    if(name == n[i] && password == p[i])
+                    {
+                        flag = true;
+                    }
+                }
+
+                if(flag == true)
+                {
+                    Console.WriteLine("Yes");
+                }
+                else
+                {
+                    Console.WriteLine("NO");
+                }
+
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("File doesnot open");
+            }
+        }
+
+        static string passRecord(string word , int field)
+        {
+            string item = "";
+            int coma = 1;
+            for(int i=0; i < word.Length; i++)
+            {
+                if(word[i] == ',')
+                {
+                    coma++;
+                }
+                else if(coma == field)
+                {
+                    item =item + word[i];
+                }
+            }
+            return item;
+        }
+
+    }
+}

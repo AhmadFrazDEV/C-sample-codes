@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace fileHandling
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int[] arr = new int[3];
+            Console.WriteLine("Enter the array");
+            for(int i=0; i<3; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine("Entered Array : ");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+            int large = -1;
+            for(int i = 0; i<3; i++)
+            {
+                for(int j=1; j<3; j++)
+                {
+                    if(arr[i] > arr[j])
+                    {
+                        arr[j] = arr[i];
+                        large = arr[j];
+                        
+                    }
+                }
+            }
+            Console.WriteLine("largset number is...{0}" ,  large);
+
+            Console.ReadKey();
+        }
+    }
+}
